@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <title>Guess Who?</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <!-- Link to my css stylesheet -->
+        <link rel = "stylesheet" href = "style.css" type = "text/css">
+        <!-- Using bootstrap CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    </head>
+    
+    <body>
+        <button class="standard-btn" id="guess-character"></button>
+
+        <!-- Buttons for all characters -->
+        <button class="standard-btn" id="alex"></button>
+        <button class="standard-btn" id="andy"></button>
+        <button class="standard-btn" id="ashley"></button>
+        <button class="standard-btn" id="kyle"></button>
+        
+        <!--  -->
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown</button>
+            <div class="dropdown-content">
+                <!--
+                <a href="#">Brown Eyes</a>
+                <a href="#">Blue Eyes</a>
+                -->
+                <button class="characteristic">Brown Eyes</button>
+                <button class="characteristic">Blue Eyes</button>
+            </div>
+        </div>
+
+        <!-- tell which JS file to reference & allow use of jQuery -->
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script type = "text/javascript" src = "main.js"></script>
+    </body>
+</html>
