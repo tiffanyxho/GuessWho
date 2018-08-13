@@ -27,7 +27,7 @@
      let randNum = Math.floor(Math.random() * characters.length);   // generate random number between 0 & length of characters list -1
      let charToGuess = characters[randNum]; // character to be guessed in characters list
      console.log(charToGuess);  
-     return charToGuess;    // return character
+     return charToGuess;    // return character id/name
 }
 
 // check if element contains the class className
@@ -36,11 +36,11 @@ function removeEle(element, className){
 }
 
 // idk yet
-function checkClass(className, list){
-    for (let i = 0; i < list.length; i++){
-        if (list[i].classList.contains(className)){
-            
-        }
+function checkClass(className, element){
+    if (element.classList.contains(className)){
+        return true;
+    }else{
+        return false;
     }
 }
 
@@ -48,16 +48,17 @@ function checkClass(className, list){
 function main(){
     let guesses = 3;    // number of guesses allowed
     let guessed = false;
-    let charToGuess = characterToGuess();   // load character to be guessed
+    let charName = characterToGuess();   // name/id of character to be guessed
+    let charElement = document.getElementById(charName);
 
     // get all buttons that user may guess
     let guessBtns = document.getElementsByClassName("standard-btn");
     
-    // iterate through all buttons - if a button is clicked, disable it, else you win! 
+    // iterate through all character buttons - if a button is clicked, disable it, else you win! 
     // Also display end game text if you run out of guesses or guess the right character
     for (let i = 0; i < guessBtns.length; i++){
         guessBtns[i].addEventListener("click", function(){
-            if (guessBtns[i].id === charToGuess){   // you win
+            if (guessBtns[i].id === charName){   // you win
                 document.getElementById("end-text").innerHTML = "You win!";
                 guessed = true;
             }else{  
@@ -72,6 +73,26 @@ function main(){
             }
         });
     }
+
+    // Eye buttons: brown, blue
+    document.getElementById("brown-eyes").addEventListener("click", function(){
+        let charBrownEyes = checkClass("brown-eyes", charElement);
+
+        for (let i = 0; i < guessBtns.length; i++){
+            if (charBrownEyes){
+                if (!checkClass("brown-eyes", guessBtns[i])){
+                    guessBtns[i].disabled = true;
+                    guessBtns[i].classList.add("disabled-btn");
+                }
+            }else{
+                if (checkClass("brown-eyes", guessBtns[i])){
+                    guessBtns[i].disabled = true;
+                    guessBtns[i].classList.add("disabled-btn");
+                }
+            }
+            
+        }
+    })
 }
 
 window.onload = main();
