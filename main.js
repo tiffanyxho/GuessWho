@@ -48,6 +48,7 @@ function checkClass(className, element){
 function main(){
     let guesses = 3;    // number of guesses allowed
     let guessed = false;
+    let hints = 8;  // number of hints left
     let charName = characterToGuess();   // name/id of character to be guessed
     let charElement = document.getElementById(charName);
 
@@ -66,33 +67,59 @@ function main(){
                 guessBtns[i].classList.add("disabled-btn");
                 guesses--;  // -1 from number of guesses left
             }
+            // update number of guesses left
             document.getElementById("guessesLeft").innerHTML = "Guesses: " + guesses;
 
+            // lose text
             if (guesses === 0){
                 document.getElementById("end-text").innerHTML = "You lose! :(";
             }
         });
     }
 
-    // Eye buttons: brown, blue
+    // Check when brown eyes button is clicked
     document.getElementById("brown-eyes").addEventListener("click", function(){
+        // does the character to be guessed have brown eyes
         let charBrownEyes = checkClass("brown-eyes", charElement);
 
         for (let i = 0; i < guessBtns.length; i++){
+            // if char has brown eyes, then disable all char buttons that don't have brown eyes
             if (charBrownEyes){
                 if (!checkClass("brown-eyes", guessBtns[i])){
                     guessBtns[i].disabled = true;
                     guessBtns[i].classList.add("disabled-btn");
                 }
+            // if char doesn't have brown eyes, then disable all char buttons w/ brown eyes
             }else{
                 if (checkClass("brown-eyes", guessBtns[i])){
                     guessBtns[i].disabled = true;
                     guessBtns[i].classList.add("disabled-btn");
                 }
             }
-            
         }
-    })
+    });
+
+    // Check when blue eyes button is clicked
+    document.getElementById("blue-eyes").addEventListener("click", function(){
+        // does the character to be guessed have blue eyes
+        let charBlueEyes = checkClass("blue-eyes", charElement);
+
+        for (let i = 0; i < guessBtns.length; i++){
+            // if char has blue eyes, then disable all char buttons that don't have blue eyes
+            if (charBlueEyes){
+                if (!checkClass("blue-eyes", guessBtns[i])){
+                    guessBtns[i].disabled = true;
+                    guessBtns[i].classList.add("disabled-btn");
+                }
+            // if char doesn't have blue eyes, then disable all char buttons w/ blue eyes
+            }else{
+                if (checkClass("blue-eyes", guessBtns[i])){
+                    guessBtns[i].disabled = true;
+                    guessBtns[i].classList.add("disabled-btn");
+                }
+            }
+        }
+    });
 }
 
 window.onload = main();
