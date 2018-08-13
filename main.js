@@ -30,12 +30,12 @@
      return charToGuess;    // return character
 }
 
-// 
+// check if element contains the class className
 function removeEle(element, className){
     element.classList.contains(className);
 }
 
-// 
+// idk yet
 function checkClass(className, list){
     for (let i = 0; i < list.length; i++){
         if (list[i].classList.contains(className)){
@@ -46,8 +46,32 @@ function checkClass(className, list){
 
 // main - everything executes here
 function main(){
-    // load character to be guessed
-    characterToGuess();
+    let guesses = 3;    // number of guesses allowed
+    let guessed = false;
+    let charToGuess = characterToGuess();   // load character to be guessed
+
+    // get all buttons that user may guess
+    let guessBtns = document.getElementsByClassName("standard-btn");
+    
+    // iterate through all buttons - if a button is clicked, disable it, else you win! 
+    // Also display end game text if you run out of guesses or guess the right character
+    for (let i = 0; i < guessBtns.length; i++){
+        guessBtns[i].addEventListener("click", function(){
+            if (guessBtns[i].id === charToGuess){   // you win
+                document.getElementById("end-text").innerHTML = "You win!";
+                guessed = true;
+            }else{  
+                guessBtns[i].disabled = true;   // disable button guessed when clicked
+                guessBtns[i].classList.add("disabled-btn");
+                guesses--;  // -1 from number of guesses left
+            }
+            document.getElementById("guessesLeft").innerHTML = "Guesses: " + guesses;
+
+            if (guesses === 0){
+                document.getElementById("end-text").innerHTML = "You lose! :(";
+            }
+        });
+    }
 }
 
 window.onload = main();

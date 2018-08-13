@@ -12,7 +12,9 @@
     </head>
     
     <body>
-        <button class="standard-btn" id="guess-character"></button>
+        <!--<button class="standard-btn" id="guess-character">Character to guess</button>-->
+
+        <p id="guessesLeft">Guesses: 5</p>
 
         <!-- Buttons for all characters -->
         <button class="standard-btn" id="alex"></button>
@@ -20,17 +22,17 @@
         <button class="standard-btn" id="ashley"></button>
         <button class="standard-btn" id="kyle"></button>
         
-        <!--  -->
+        <!-- Dropdown for eyes: brown, blue -->
         <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
+            <button class="dropbtn">Eyes</button>
             <div class="dropdown-content">
-                <!--
-                <a href="#">Brown Eyes</a>
-                <a href="#">Blue Eyes</a>
-                -->
                 <button class="characteristic">Brown Eyes</button>
                 <button class="characteristic">Blue Eyes</button>
             </div>
+        </div>
+        
+        <div>
+            <p id="end-text"></p>
         </div>
 
         <!-- tell which JS file to reference & allow use of jQuery -->
