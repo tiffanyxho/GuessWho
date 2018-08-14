@@ -77,7 +77,9 @@ function main(){
         });
     }
 
-    // Check when brown eyes button is clicked
+    // CHECKING WHEN HINTS ARE CLICKED BEGIN
+
+    // Brown eyes button clicked
     document.getElementById("brown-eyes").addEventListener("click", function(){
         // does the character to be guessed have brown eyes
         let charBrownEyes = checkClass("brown-eyes", charElement);
@@ -99,7 +101,7 @@ function main(){
         }
     });
 
-    // Check when blue eyes button is clicked
+    // Blue eyes button clicked
     document.getElementById("blue-eyes").addEventListener("click", function(){
         // does the character to be guessed have blue eyes
         let charBlueEyes = checkClass("blue-eyes", charElement);
