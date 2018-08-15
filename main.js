@@ -1,20 +1,3 @@
-/* Different guessing combinations
- * Hair color
- * Eye color
- * Facial hair: mustache, beard
- * Hair or no hair
- * Female or male
- * Accessories: glasses, earrings, cap/hat
- * Skin color
- * Big nose
- * Bushy eyebrows
- * Facial expression
- * 
- * Start with: 3-4 people, make game work first --> guessing dims player pictures?/ "flips player pictures"
- * Add in player pictures at top for guessing or make a guess button
- * Add guessing options for diff. traits
- */
-
  let characters = ["alex", "andy", "ashley", "kyle"];   // all characters
  // below are the characters in the list with the attribute/trait of the list name
  let dark_skin = ["andy"];
@@ -35,7 +18,7 @@ function removeEle(element, className){
     element.classList.contains(className);
 }
 
-// idk yet
+// Checks if element has className, return true if so, else return false
 function checkClass(className, element){
     if (element.classList.contains(className)){
         return true;
@@ -90,12 +73,14 @@ function main(){
                 if (!checkClass("brown-eyes", guessBtns[i])){
                     guessBtns[i].disabled = true;
                     guessBtns[i].classList.add("disabled-btn");
+                    document.getElementById("hints-text").innerHTML = "The character has brown eyes.";
                 }
             // if char doesn't have brown eyes, then disable all char buttons w/ brown eyes
             }else{
                 if (checkClass("brown-eyes", guessBtns[i])){
                     guessBtns[i].disabled = true;
                     guessBtns[i].classList.add("disabled-btn");
+                    document.getElementById("hints-text").innerHTML = "The character does NOT have brown eyes.";
                 }
             }
         }
@@ -112,12 +97,14 @@ function main(){
                 if (!checkClass("blue-eyes", guessBtns[i])){
                     guessBtns[i].disabled = true;
                     guessBtns[i].classList.add("disabled-btn");
+                    document.getElementById("hints-text").innerHTML = "The character has blue eyes.";
                 }
             // if char doesn't have blue eyes, then disable all char buttons w/ blue eyes
             }else{
                 if (checkClass("blue-eyes", guessBtns[i])){
                     guessBtns[i].disabled = true;
                     guessBtns[i].classList.add("disabled-btn");
+                    document.getElementById("hints-text").innerHTML = "The character does NOT have blue eyes.";
                 }
             }
         }
