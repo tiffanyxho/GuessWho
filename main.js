@@ -27,6 +27,35 @@ function checkClass(className, element){
     }
 }
 
+// Adds an event listener when a dropdown menu hint button is pressed
+// Characteristic is a boolean that's set based on whether the characterToBeGuessed has characteristicID as a class
+function checkHint(characteristicID, list, characteristic, characterToBeGuessed){
+    document.getElementById(characteristicID).addEventListener("click", function(){
+        // does the character to be guessed have brown eyes
+        let characteristic = checkClass(characteristicID, characterToBeGuessed);
+
+        for (let i = 0; i < list.length; i++){
+            // if char has characteristic, then disable all char buttons that don't have characteristic
+            if (characteristic){
+                if (!checkClass(characteristicID, list[i])){
+                    list[i].disabled = true;
+                    list[i].classList.add("disabled-btn");
+                    //document.getElementById("hints-text").innerHTML = "The character has brown eyes.";
+                }
+            // if char doesn't have characteristic, then disable all char buttons w/ characteristic
+            }else{
+                if (checkClass(characteristicID, list[i])){
+                    list[i].disabled = true;
+                    list[i].classList.add("disabled-btn");
+                    //document.getElementById("hints-text").innerHTML = "The character does NOT have brown eyes.";
+                }
+            }
+        }
+    });
+}
+
+
+
 // main - everything executes here
 function main(){
     let guesses = 3;    // number of guesses allowed
