@@ -22,7 +22,19 @@
         <button class="standard-btn brown-eyes" id="ashley"></button>
         <button class="standard-btn blue-eyes" id="kyle"></button>
         
-        <!-- Dropdowns begin -->
+        <!-- Dropdowns begin - different guess combinations
+            * Hair color
+            * Eye color
+            * Facial hair: mustache, beard
+            * Hair or no hair (bald)
+            * Female or male
+            * Accessories: glasses, earrings (even though all the females are wearing earrings...), cap/hat
+            * Skin color
+            * Big nose
+            * Bushy eyebrows
+            * Facial expression 
+            * Start with: 3-4 people, make game work first -> guessing dims player pictures?/ "flips player pictures"
+            -->
         <!-- Eyes: brown, blue -->
         <div class="dropdown">
             <button class="dropbtn">Eyes</button>
@@ -52,14 +64,61 @@
 
         <!-- Skin color: dark, light -->
         <div class="dropdown">
-            <button class="dropbtn">Skin color</button>
+            <button class="dropbtn">Skin Color</button>
             <div class="dropdown-content">
                 <button class="characteristic" id="female">Dark</button>
                 <button class="characteristic" id="male">Light</button>
             </div>
         </div>
+
+        <!-- Facial Hair: beard, mustache, both -->
+        <div class="dropdown">
+            <button class="dropbtn">Facial Hair</button>
+            <div class="dropdown-content">
+                <button class="characteristic" id="beard">Beard</button>
+                <button class="characteristic" id="mustache">Mustache</button>
+                <button class="characteristic" id="beard-and-mustache">Both</button>
+            </div>
+        </div>
+
+        <!-- Hair color: black, white, red, brown, yellow -->
+        <div class="dropdown">
+            <button class="dropbtn">Hair Color</button>
+            <div class="dropdown-content">
+                <button class="characteristic" id="black-hair">Black Hair</button>
+                <button class="characteristic" id="white-hair">White Hair</button>
+                <button class="characteristic" id="red-hair">Red Hair</button>
+                <button class="characteristic" id="brown-hair">Brown Hair</button>
+                <button class="characteristic" id="yellow-hair">Yellow Hair</button>
+            </div>
+        </div>
+
+        <!-- Eyebrows: thin, thick, not showing -->
+        <div class="dropdown">
+            <button class="dropbtn">Eyebrows</button>
+            <div class="dropdown-content">
+                <button class="characteristic" id="thin-eyebrows">Thin Eyebrows</button>
+                <button class="characteristic" id="thick-eyebrows">Thick Eyebrows</button>
+                <button class="characteristic" id="not-showing-eyebrows">Not Showing Eyebrows</button>
+            </div>
+        </div>
+
+        <!-- Nose: Big, regular or small -->
+        <div class="dropdown">
+            <button class="dropbtn">Nose Size</button>
+            <div class="dropdown-content">
+                <button class="characteristic" id="big-nose">Big Nose</button>
+                <button class="characteristic" id="regular-or-small-nose">Regular Or Small</button>
+            </div>
+        </div>
         <!-- Dropdowns end -->
-        
+
+        <!-- Hints text -->
+        <div id="hints">
+            <p>Hints</p>
+            <p id="hints-text"></p>
+        </div>
+
         <!-- End text displayed -->
         <div>
             <p id="end-text"></p>
