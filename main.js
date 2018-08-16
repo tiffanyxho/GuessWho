@@ -1,5 +1,5 @@
  // initialize variables
- let characters = ["alex", "andy", "ashley", "kyle"];   // all characters
+ let characters = ["alex", "andy", "ashley", "emily", "james", "jon", "kyle", "nick", "sarah", "william"];   // all characters
  // below are the characters in the list with the attribute/trait of the list name
  let dark_skin = ["andy"];
  let light_skin = ["alex", "ashley"];
