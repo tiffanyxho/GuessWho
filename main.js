@@ -7,7 +7,7 @@
  let blue_eyes = ["kyle"];
  // characteristic IDs in a list
  let characteristicIDs = ["brown-eyes", "blue-eyes", "female", "male", "hat", "glasses", 
-                        "dark-skin", "light-skin", "beard", "mustache", "beard-and-mustache", 
+                        "dark-skin", "light-skin", "beard", "mustache", "beard-and-mustache", "no-facial-hair", 
                         "black-hair", "white-hair", "red-hair", "yellow-hair", "brown-hair", 
                         "thin-eyebrows", "thick-eyebrows", "not-showing-eyebrows", "big-nose",
                         "regular-or-small-nose"];
