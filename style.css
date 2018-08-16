@@ -14,11 +14,20 @@
 
 /* Drop down buttons for eliminating choices begins */
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: #5C95E8;
     color: white;
     padding: 16px;
     font-size: 16px;
     border: none;
+    border-radius: 20%;
+}
+
+.characteristic {
+    border-radius: 5%;
+}
+
+.container {
+    text-align: center;
 }
 
 .dropdown {
