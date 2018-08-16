@@ -1,5 +1,7 @@
  // initialize variables
- let characters = ["alex", "andy", "ashley", "brandon", "chris", "connor", "daniel", "david", "emily", "jake", "james", "jon", "joseph", "joshua", "justin", "kyle", "megan", "matt", "nick", "rachael", "sarah", "tyler", "william", "zachary"];   // all characters
+ let characters = ["alex", "andy", "ashley", "brandon", "chris", "connor", "daniel", "david", 
+ "emily", "jake", "james", "jon", "joseph", "joshua", "justin", "kyle", "megan", "matt", "nick", 
+ "rachael", "sarah", "tyler", "william", "zachary"];   // list of all characters
  // below are the characters in the list with the attribute/trait of the list name
  let dark_skin = ["andy"];
  let light_skin = ["alex", "ashley"];
@@ -7,10 +9,10 @@
  let blue_eyes = ["kyle"];
  // characteristic IDs in a list
  let characteristicIDs = ["brown-eyes", "blue-eyes", "female", "male", "hat", "glasses", 
-                        "dark-skin", "light-skin", "beard", "mustache", "beard-and-mustache", "no-facial-hair", 
-                        "black-hair", "white-hair", "red-hair", "yellow-hair", "brown-hair", 
-                        "thin-eyebrows", "thick-eyebrows", "not-showing-eyebrows", "big-nose",
-                        "regular-or-small-nose"];
+                        "dark-skin", "light-skin", "beard", "mustache", "beard-and-mustache", 
+                        "no-facial-hair", "black-hair", "white-hair", "red-hair", "yellow-hair", 
+                        "brown-hair", "thin-eyebrows", "thick-eyebrows", "not-showing-eyebrows", 
+                        "big-nose", "regular-or-small-nose"];
 
  // Generate random character for user to guess
  function characterToGuess(){
@@ -46,14 +48,14 @@ function checkHint(characteristicID, list, characterToBeGuessed){
                 if (!checkClass(characteristicID, list[i])){
                     list[i].disabled = true;
                     list[i].classList.add("disabled-btn");
-                    document.getElementById("hints-text").innerHTML = "Yes " + document.getElementById(characteristicID).innerHTML;
+                    document.getElementById("hints-text").innerHTML = document.getElementById(characteristicID).parentElement.parentElement.children[0].innerHTML + ": " + document.getElementById(characteristicID).innerHTML + "? <br> Yes";
                 }
             // if char doesn't have characteristic, then disable all char buttons w/ characteristic
             }else{
                 if (checkClass(characteristicID, list[i])){
                     list[i].disabled = true;
                     list[i].classList.add("disabled-btn");
-                    document.getElementById("hints-text").innerHTML = "No " + document.getElementById(characteristicID).innerHTML;
+                    document.getElementById("hints-text").innerHTML = document.getElementById(characteristicID).parentElement.parentElement.children[0].innerHTML + ": " + document.getElementById(characteristicID).innerHTML + "? <br> No";
                 }
             }
         }
@@ -84,7 +86,7 @@ function main(){
                 guesses--;  // -1 from number of guesses left
             }
             // update number of guesses left
-            document.getElementById("guessesLeft").innerHTML = "Guesses: " + guesses;
+            document.getElementById("guesses-left").innerHTML = "Guesses: " + guesses;
 
             // lose text
             if (guesses === 0){
