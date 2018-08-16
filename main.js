@@ -5,6 +5,12 @@
  let light_skin = ["alex", "ashley"];
  let brown_eyes = ["alex", "andy", "ashley"];
  let blue_eyes = ["kyle"];
+ // characteristic IDs in a list
+ let characteristicIDs = ["brown-eyes", "blue-eyes", "female", "male", "hat", "glasses", 
+                        "dark-skin", "light-skin", "beard", "mustache", "beard-and-mustache", 
+                        "black-hair", "white-hair", "red-hair", "yellow-hair", "brown-hair", 
+                        "thin-eyebrows", "thick-eyebrows", "not-showing-eyebrows", "big-nose",
+                        "regular-or-small-nose"];
 
  // Generate random character for user to guess
  function characterToGuess(){
@@ -87,13 +93,10 @@ function main(){
         });
     }
 
-    // CHECKING WHEN HINTS ARE CLICKED BEGIN
-
-    // Brown eyes button clicked
-    checkHint("brown-eyes", guessBtns, charElement);
-
-    // Blue eyes button clicked
-    checkHint("blue-eyes", guessBtns, charElement);
+    // Checks when a hint button is clicked
+    for (let i = 0; i < characteristicIDs.length; i++){
+        checkHint(characteristicIDs[i], guessBtns, charElement);
+    }
 }
 
 window.onload = main();
