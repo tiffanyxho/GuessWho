@@ -1,3 +1,4 @@
+ // initialize variables
  let characters = ["alex", "andy", "ashley", "kyle"];   // all characters
  // below are the characters in the list with the attribute/trait of the list name
  let dark_skin = ["andy"];
@@ -27,36 +28,33 @@ function checkClass(className, element){
     }
 }
 
-// Adds an event listener when a dropdown menu hint button is pressed
-// Characteristic is a boolean that's set based on whether the characterToBeGuessed has characteristicID as a class
-function checkHint(characteristicID, list, characteristic, characterToBeGuessed){
+// Adds an event listener when a dropdown menu hint button is pressed & disables buttons that do not fit the hint clicked
+function checkHint(characteristicID, list, characterToBeGuessed){
     document.getElementById(characteristicID).addEventListener("click", function(){
-        // does the character to be guessed have brown eyes
+        // Characteristic = boolean set based on whether the characterToBeGuessed has characteristicID as a class
         let characteristic = checkClass(characteristicID, characterToBeGuessed);
 
         for (let i = 0; i < list.length; i++){
-            // if char has characteristic, then disable all char buttons that don't have characteristic
+            // if char has characteristic, then disable all char buttons that w/o characteristic
             if (characteristic){
                 if (!checkClass(characteristicID, list[i])){
                     list[i].disabled = true;
                     list[i].classList.add("disabled-btn");
-                    //document.getElementById("hints-text").innerHTML = "The character has brown eyes.";
+                    document.getElementById("hints-text").innerHTML = "Yes " + document.getElementById(characteristicID).innerHTML;
                 }
             // if char doesn't have characteristic, then disable all char buttons w/ characteristic
             }else{
                 if (checkClass(characteristicID, list[i])){
                     list[i].disabled = true;
                     list[i].classList.add("disabled-btn");
-                    //document.getElementById("hints-text").innerHTML = "The character does NOT have brown eyes.";
+                    document.getElementById("hints-text").innerHTML = "No " + document.getElementById(characteristicID).innerHTML;
                 }
             }
         }
     });
 }
 
-
-
-// main - everything executes here
+// Execution
 function main(){
     let guesses = 3;    // number of guesses allowed
     let guessed = false;
@@ -92,52 +90,10 @@ function main(){
     // CHECKING WHEN HINTS ARE CLICKED BEGIN
 
     // Brown eyes button clicked
-    document.getElementById("brown-eyes").addEventListener("click", function(){
-        // does the character to be guessed have brown eyes
-        let charBrownEyes = checkClass("brown-eyes", charElement);
-
-        for (let i = 0; i < guessBtns.length; i++){
-            // if char has brown eyes, then disable all char buttons that don't have brown eyes
-            if (charBrownEyes){
-                if (!checkClass("brown-eyes", guessBtns[i])){
-                    guessBtns[i].disabled = true;
-                    guessBtns[i].classList.add("disabled-btn");
-                    document.getElementById("hints-text").innerHTML = "The character has brown eyes.";
-                }
-            // if char doesn't have brown eyes, then disable all char buttons w/ brown eyes
-            }else{
-                if (checkClass("brown-eyes", guessBtns[i])){
-                    guessBtns[i].disabled = true;
-                    guessBtns[i].classList.add("disabled-btn");
-                    document.getElementById("hints-text").innerHTML = "The character does NOT have brown eyes.";
-                }
-            }
-        }
-    });
+    checkHint("brown-eyes", guessBtns, charElement);
 
     // Blue eyes button clicked
-    document.getElementById("blue-eyes").addEventListener("click", function(){
-        // does the character to be guessed have blue eyes
-        let charBlueEyes = checkClass("blue-eyes", charElement);
-
-        for (let i = 0; i < guessBtns.length; i++){
-            // if char has blue eyes, then disable all char buttons that don't have blue eyes
-            if (charBlueEyes){
-                if (!checkClass("blue-eyes", guessBtns[i])){
-                    guessBtns[i].disabled = true;
-                    guessBtns[i].classList.add("disabled-btn");
-                    document.getElementById("hints-text").innerHTML = "The character has blue eyes.";
-                }
-            // if char doesn't have blue eyes, then disable all char buttons w/ blue eyes
-            }else{
-                if (checkClass("blue-eyes", guessBtns[i])){
-                    guessBtns[i].disabled = true;
-                    guessBtns[i].classList.add("disabled-btn");
-                    document.getElementById("hints-text").innerHTML = "The character does NOT have blue eyes.";
-                }
-            }
-        }
-    });
+    checkHint("blue-eyes", guessBtns, charElement);
 }
 
 window.onload = main();
