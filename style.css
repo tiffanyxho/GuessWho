@@ -73,6 +73,10 @@
     background: url("images/Jon.png");
 }
 
+#joshua{
+    background: url("images/Joshua.png");
+}
+
 #kyle{
     background: url("images/Kyle.png");
 }
@@ -87,4 +91,8 @@
 
 #william{
     background: url("images/William.png");
+}
+
+#zachary{
+    background: url("images/Zachary.png");
 }
