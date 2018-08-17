@@ -37,7 +37,7 @@ function checkClass(className, element){
 }
 
 // Adds an event listener when a dropdown menu hint button is pressed & disables buttons that do not fit the hint clicked
-function checkHint(characteristicID, list, characterToBeGuessed){
+function checkHint(characteristicID, list, characterToBeGuessedp){
     document.getElementById(characteristicID).addEventListener("click", function(){
         // Characteristic = boolean set based on whether the characterToBeGuessed has characteristicID as a class
         let characteristic = checkClass(characteristicID, characterToBeGuessed);
@@ -62,6 +62,18 @@ function checkHint(characteristicID, list, characterToBeGuessed){
     });
 }
 
+// Refresh page / restart game
+function refreshPage(){
+    window.location.reload();
+}
+
+// Disables all buttons in list
+function disableButtonsInList(list){
+    for (let i = 0; i < list.length; i++){
+        list[i].disabled = "true";
+    }
+}
+
 // Execution
 function main(){
     let guesses = 3;    // number of guesses allowed
@@ -72,30 +84,45 @@ function main(){
 
     // get all buttons that user may guess
     let guessBtns = document.getElementsByClassName("standard-btn");
-    
-    // iterate through all character buttons - if a button is clicked, disable it, else you win! 
-    // Also display end game text if you run out of guesses or guess the right character
-    for (let i = 0; i < guessBtns.length; i++){
-        guessBtns[i].addEventListener("click", function(){
-            if (guessBtns[i].id === charName){   // you win
-                document.getElementById("end-text").innerHTML = "You win!";
-                guessed = true;
-            }else{  
-                guessBtns[i].disabled = true;   // disable button guessed when clicked
-                guessBtns[i].classList.add("disabled-btn");
-                guesses--;  // -1 from number of guesses left
-            }
-            // update number of guesses left
-            document.getElementById("guesses-left").innerHTML = "Guesses: " + guesses;
+    let hintBtns = document.getElementsByClassName("characteristic");
 
-            // lose text
+    document.getElementById("guesses-left").innerHTML = "Guesses: " + guesses;
+    document.getElementById("hints-left").innerHTML = "Hints: " + hints;
+
+    document.getElementById("refresh-btn").addEventListener("click", refreshPage);
+    
+    // AddEventListeners to all character buttons - if a button is clicked & it's not the char, disable it, else you win!
+    for (let i = 0; i < guessBtns.length; i++){
+        guessBtns[i].addEventListener("click", function update(){
+            if (guesses > 0 && hints >= 0){
+                if (guessBtns[i].id === charName){   // you win
+                    document.getElementById("end-text").innerHTML = "You win!";
+                    guessed = true;
+
+                    // disables all character buttons & hint buttons so that user cannot click when they win
+                    disableButtonsInList(guessBtns);
+                    disableButtonsInList(hintBtns);
+                }else{  
+                    guessBtns[i].disabled = true;   // disable button guessed when clicked
+                    guessBtns[i].classList.add("disabled-btn");
+                    guesses--;  // -1 from number of guesses left
+                }
+                // update number of guesses left
+                document.getElementById("guesses-left").innerHTML = "Guesses: " + guesses;
+            }
+            if (hints === 0){
+                // disables all hint buttons so that user cannot click when they win
+                disableButtonsInList(hintBtns);
+            }
             if (guesses === 0){
-                document.getElementById("end-text").innerHTML = "You lose! :(";
+                // disables all character buttons & hint buttons so that user cannot click when they win
+                disableButtonsInList(guessBtns);
+                disableButtonsInList(hintBtns);
             }
         });
     }
 
-    // Checks when a hint button is clicked
+    // Add EventListeners to check when a hint button is clicked
     for (let i = 0; i < characteristicIDs.length; i++){
         checkHint(characteristicIDs[i], guessBtns, charElement);
     }
