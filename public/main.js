@@ -84,18 +84,26 @@ function getImgURL(file) {
 
 // Execution
 function main(){
-    let storage = firebase.storage();
-    let storageRef = storage.ref();
+    /*let storage = firebase.storage();
+    let storageRef = storage.ref("images/David.png");
     let person = "David";
     let imgRef = storageRef.child("images/" + person + ".png");
-    console.log(storage);
-    console.log(storageRef);
-    console.log(imgRef);
-    console.log(imgRef)
+
     // https://firebasestorage.googleapis.com/v0/b/guess-who-2018.appspot.com/o/images%2FDavid.png
     // https://firebasestorage.googleapis.com/v0/b/guess-who-2018.appspot.com/o/images%2FDavid.PNG?alt=media&token=99e62b94-fb5e-4197-811e-1967010abd3a
+    */
 
-    imgRef.getDownloadURL().then(function(url){
+    // i don't get the error messages - when I set the second match to : match /{userId}/{messageId}/{fileName} {, it gives an error 403 - i don't get how to solve it
+    // when I set the second match to: /{allPaths=**} {, it gives an error message 404... not sure what's going on but slowly catching on
+    // 404 --> wrong file paths ; 403 --> forbidden access
+    if (firebase.auth().currentUser !== null) 
+        console.log("user id: " + firebase.auth().currentUser.uid);
+
+    var storageRef = firebase.storage().ref("images/David.png");
+    storageRef.getDownloadURL().then(function(url) {
+      console.log(url);
+    });
+    /*imgRef.getDownloadURL().then(function(url){
         // This can be downloaded directly:
         /*var xhr = new XMLHttpRequest();
         //xhr.responseType = 'blob';
@@ -108,37 +116,17 @@ function main(){
         console.log("hi");
         console.log(xhr.responseText);*/
         // Or inserted into an <img> element:
-        var img = document.getElementById('david');
+      /*  var img = document.getElementById('david');
         img.style.backgroundImage = "url('" + url + "alt=media&token=99e62b94-fb5e-4197-811e-1967010abd3a" + "')";
         //document.getElementById(person).style.backgroundImage = "url('" + "" + "')";
     }).catch(function(error){
         
-    });
+    });*/
 
     //var spaceRef = storageRef.child('images/Andy.png');
     //var path = spaceRef.fullPath;
     //var gsReference = storage.refFromURL('gs://test.appspot.com/images/Megan.PNG');
 
-    // gs://guess-who-2018.appspot.com/Andy.png
-    
-    
-    //let andyy = getImgURL("Andy");
-    //storageRef.child('Andy.png').getDownloadURL().then(function(url) {
-      //  var test = url;
-        //return url;
-        // This can be downloaded directly:
-        /*
-        var xhr = new XMLHttpRequest();
-        xhr.responseType = 'blob';
-        xhr.onload = function(event) {
-            var blob = xhr.response;
-        };
-        xhr.open('GET', url);
-        xhr.send();
-        */
-    //}).catch(function(error) {
-      //  console.log(error);
-    //});
 
     let guesses = 3;    // number of guesses allowed
     let guessed = false;
