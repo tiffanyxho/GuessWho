@@ -1,65 +1,175 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html lang = "en">
+    <head>
+        <title>Guess Who?</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <!-- Link to my css stylesheet -->
+        <link rel = "stylesheet" href = "style.css" type = "text/css">
+        <!-- Using bootstrap CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    </head>
+    
+    <body>
+        <!-- Firebase code -->        
+        <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+        <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBzI0FaYoAf2zoWYkmKMWdGWzrCSSgHAJw",
+            authDomain: "guess-who-2018.firebaseapp.com",
+            databaseURL: "https://guess-who-2018.firebaseio.com",
+            projectId: "guess-who-2018",
+            storageBucket: "guess-who-2018.appspot.com",
+            messagingSenderId: "91895359919"
+        };
+        firebase.initializeApp(config);
+        </script>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/5.4.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/5.4.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/5.4.0/firebase-database.js"></script>
-    <script defer src="/__/firebase/5.4.0/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/5.4.0/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+        <!--<button class="standard-btn" id="guess-character">Character to guess</button>-->
+        <h1>Guess Who?</h1>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+        <p id="guesses-left">Guesses: 3</p>
+        <p id="hints-left">Hints: 8</p>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        <div class="container">
+            <!-- Buttons for all characters - in alphabetical order of names/IDs -->
+            <button class="standard-btn brown-eyes male glasses light-skin no-facial-hair white-hair thin-eyebrows big-nose" id="alex"></button>
+            <button class="standard-btn brown-eyes male dark-skin beard black-hair thick-eyebrows regular-or-small-nose" id="andy"></button>
+            <button class="standard-btn brown-eyes female hat light-skin no-facial-hair red-hair not-showing-eyebrows regular-or-small-nose" id="ashley"></button>
+            <button class="standard-btn brown-eyes male hat light-skin no-facial-hair yellow-hair not-showing-eyebrows regular-or-small-nose" id="brandon"></button>
+            <button class="standard-btn brown-eyes male hat light-skin no-facial-hair black-hair thin-eyebrows big-nose" id="chris"></button>
+            <button class="standard-btn brown-eyes male dark-skin mustache brown-hair thin-eyebrows regular-or-small-nose" id="connor"></button>
+            <button class="standard-btn brown-eyes male hat dark-skin no-facial-hair brown-hair thick-eyebrows big-nose" id="daniel"></button>
+            <button class="standard-btn brown-eyes male light-skin beard red-hair thick-eyebrows regular-or-small-nose" id="david"></button>
+            <button class="standard-btn blue-eyes female light-skin no-facial-hair white-hair thin-eyebrows regular-or-small-nose" id="emily"></button>
+            <button class="standard-btn brown-eyes male light-skin mustache yellow-hair not-showing-eyebrows regular-or-small-nose" id="jake"></button>
+            <button class="standard-btn brown-eyes male dark-skin beard brown-hair thin-eyebrows regular-or-small-nose" id="james"></button>
+            <button class="standard-btn brown-eyes male light-skin beard white-hair thin-eyebrows regular-or-small-nose" id="jon"></button>
+            <button class="standard-btn blue-eyes male glasses light-skin no-facial-hair red-hair thin-eyebrows regular-or-small-nose" id="joseph"></button>
+            <button class="standard-btn brown-eyes male light-skin mustache white-hair thin-eyebrows big-nose" id="joshua"></button>
+            <button class="standard-btn brown-eyes male light-skin mustache brown-hair thin-eyebrows regular-or-small-nose" id="justin"></button>
+            <button class="standard-btn blue-eyes male light-skin no-facial-hair yellow-hair thin-eyebrows regular-or-small-nose" id="kyle"></button>
+            <button class="standard-btn blue-eyes female light-skin no-facial-hair yellow-hair thin-eyebrows regular-or-small-nose" id="megan"></button>
+            <button class="standard-btn brown-eyes male light-skin no-facial-hair white-hair thin-eyebrows regular-or-small-nose" id="matt"></button>
+            <button class="standard-btn blue-eyes male glasses light-skin no-facial-hair brown-hair thin-eyebrows regular-or-small-nose" id="nick"></button>
+            <button class="standard-btn brown-eyes female hat light-skin no-facial-hair brown-hair thin-eyebrows regular-or-small-nose" id="rachael"></button>
+            <button class="standard-btn brown-eyes female glasses dark-skin no-facial-hair black-hair not-showing-eyebrows regular-or-small-nose" id="sarah"></button>
+            <button class="standard-btn brown-eyes male light-skin mustache black-hair thick-eyebrows big-nose" id="tyler"></button>
+            <button class="standard-btn brown-eyes male light-skin beard yellow-hair not-showing-eyebrows regular-or-small-nose" id="william"></button>
+            <button class="standard-btn brown-eyes male light-skin no-facial-hair red-hair thick-eyebrows regular-or-small-nose" id="zachary"></button>
+        </div>
+        <!-- Dropdowns begin - different guess combinations
+            * IDs of hints: 
+            * brown-eyes, blue-eyes, female, male, hat, glasses, dark-skin, light-skin,
+            * beard, mustache, beard-and-mustache, no-facial-hair, black-hair, white-hair, red-hair, yellow-hair, 
+            * brown-hair, thin-eyebrows, thick-eyebrows, not-showing-eyebrows, big-nose,
+            * regular-or-small-nose
+            * Hair or no hair (bald)
+            * Accessories: glasses, earrings (even though all the females are wearing earrings...), cap/hat
+            * Facial expression 
+            * Start with: 3-4 people, make game work first -> guessing dims player pictures?/ "flips player pictures"
+        -->
+        
+        <!-- Line break - separate character buttons and hints -->
+        <br>
 
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
+        <div class="container">
+            <!-- Eyes: brown, blue -->
+            <div class="dropdown">
+                <button class="dropbtn">Eyes</button>
+                <div class="dropdown-content">
+                    <button class="characteristic" id="brown-eyes">Brown Eyes</button>
+                    <button class="characteristic" id="blue-eyes">Blue Eyes</button>
+                </div>
+            </div>
+
+            <!-- Gender: female, male -->
+            <div class="dropdown">
+                <button class="dropbtn">Gender</button>
+                <div class="dropdown-content">
+                    <button class="characteristic" id="female">Female</button>
+                    <button class="characteristic" id="male">Male</button>
+                </div>
+            </div>
+
+            <!-- Accessories: hat, glasses -->
+            <div class="dropdown">
+                <button class="dropbtn">Accessories</button>
+                <div class="dropdown-content">
+                    <button class="characteristic" id="hat">Hat</button>
+                    <button class="characteristic" id="glasses">Glasses</button>
+                </div>
+            </div>
+
+            <!-- Skin color: dark, light -->
+            <div class="dropdown">
+                <button class="dropbtn">Skin Color</button>
+                <div class="dropdown-content">
+                    <button class="characteristic" id="dark-skin">Dark</button>
+                    <button class="characteristic" id="light-skin">Light</button>
+                </div>
+            </div>
+
+            <!-- Facial Hair: beard, mustache, both -->
+            <div class="dropdown">
+                <button class="dropbtn">Facial Hair</button>
+                <div class="dropdown-content">
+                    <button class="characteristic" id="beard">Beard</button>
+                    <button class="characteristic" id="mustache">Mustache</button>
+                    <button class="characteristic" id="beard-and-mustache">Both</button>
+                    <button class="characteristic" id="no-facial-hair">None</button>
+                </div>
+            </div>
+
+            <!-- Hair color: black, white, red, brown, yellow -->
+            <div class="dropdown">
+                <button class="dropbtn">Hair Color</button>
+                <div class="dropdown-content">
+                    <button class="characteristic" id="black-hair">Black Hair</button>
+                    <button class="characteristic" id="white-hair">White Hair</button>
+                    <button class="characteristic" id="red-hair">Red Hair</button>
+                    <button class="characteristic" id="brown-hair">Brown Hair</button>
+                    <button class="characteristic" id="yellow-hair">Yellow Hair</button>
+                </div>
+            </div>
+
+            <!-- Eyebrows: thin, thick, not showing -->
+            <div class="dropdown">
+                <button class="dropbtn">Eyebrows</button>
+                <div class="dropdown-content">
+                    <button class="characteristic" id="thin-eyebrows">Thin Eyebrows</button>
+                    <button class="characteristic" id="thick-eyebrows">Thick Eyebrows</button>
+                    <button class="characteristic" id="not-showing-eyebrows">Not Showing Eyebrows</button>
+                </div>
+            </div>
+
+            <!-- Nose: Big, regular or small -->
+            <div class="dropdown">
+                <button class="dropbtn">Nose Size</button>
+                <div class="dropdown-content">
+                    <button class="characteristic" id="big-nose">Big Nose</button>
+                    <button class="characteristic" id="regular-or-small-nose">Regular Or Small</button>
+                </div>
+            </div>
+        </div>
+        <!-- Dropdowns end -->
+
+        <!-- Hints text -->
+        <div id="hints">
+            <p>Hints</p>
+            <p id="hints-text"></p>
+        </div>
+
+        <!-- End text displayed -->
+        <div id="end-screen">
+            <p id="end-text"></p>
+            <button id="refresh-btn">Play Again</button>
+        </div>
+
+        <!-- tell which JS file to reference & allow use of jQuery -->
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script type = "text/javascript" src = "main.js"></script>
+    </body>
 </html>

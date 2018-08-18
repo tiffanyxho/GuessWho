@@ -1,0 +1,162 @@
+
+
+/* Guessing buttons */
+.standard-btn{
+    width: 83px;
+    height: 113px;
+    background-size: 80px !important;
+    border-radius: 10%;
+    background-repeat: no-repeat;
+}
+
+/* Class for disabled buttons / buttons that are incorrect */
+.disabled-btn{
+    opacity: .4;
+}
+
+/* Back hint buttons rounded */
+.characteristic {
+    border-radius: 5%;
+}
+
+/* Center content */
+.container {
+    text-align: center;
+}
+
+/* Drop down buttons for eliminating choices begins */
+.dropbtn {
+    background-color: #5C95E8;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 20%;
+}
+
+/*  */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3D70BA;}
+
+/* Drop down button CSS ends & indiv. button background pictures to display characters begin below */
+/*
+#alex{
+    background: url("gs://guess-who-2018.appspot.com/Alex.png");
+}
+
+#andy{
+    background: url("gs://guess-who-2018.appspot.com/Andy.png");
+}
+
+#ashley{
+    background: url("gs://guess-who-2018.appspot.com/Ashley.png");
+}
+
+#brandon{
+    background: url("gs://guess-who-2018.appspot.com/Brandon.png");
+}
+
+#chris{
+    background: url("gs://guess-who-2018.appspot.com/Chris.png");
+}
+
+#connor{
+    background: url("gs://guess-who-2018.appspot.com/Connor.png");
+}
+
+#daniel{
+    background: url("gs://guess-who-2018.appspot.com/Daniel.png");
+}
+
+#david{
+    background: url("gs://guess-who-2018.appspot.com/David.png");
+}
+
+#emily{
+    background: url("gs://guess-who-2018.appspot.com/Emily.png");
+}
+
+#jake{
+    background: url("gs://guess-who-2018.appspot.com/Jake.png");
+}
+
+#james{
+    background: url("gs://guess-who-2018.appspot.com/James.png");
+}
+
+#jon{
+    background: url("gs://guess-who-2018.appspot.com/Jon.png");
+}
+
+#joseph{
+    background: url("gs://guess-who-2018.appspot.com/Joseph.png");
+}
+
+#joshua{
+    background: url("gs://guess-who-2018.appspot.com/Joshua.png");
+}
+
+#justin{
+    background: url("gs://guess-who-2018.appspot.com/Justin.png");
+}
+
+#kyle{
+    background: url("gs://guess-who-2018.appspot.com/Kyle.png");
+}
+
+#matt{
+    background: url("gs://guess-who-2018.appspot.com/Matt.png");
+}
+
+#megan{
+    background: url("gs://guess-who-2018.appspot.com/Megan.png");
+}
+
+#nick{
+    background: url("gs://guess-who-2018.appspot.com/Nick.png");
+}
+
+#rachael{
+    background: url("gs://guess-who-2018.appspot.com/Rachael.png");
+}
+
+#sarah{
+    background: url("gs://guess-who-2018.appspot.com/Sarah.png");  
+}
+
+#tyler{
+    background: url("gs://guess-who-2018.appspot.com/Tyler.png");
+}
+
+#william{
+    background: url("gs://guess-who-2018.appspot.com/William.png");
+}
+
+#zachary{
+    background: url("gs://guess-who-2018.appspot.com/Zachary.png");
+}
+*/
